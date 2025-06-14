@@ -35,16 +35,16 @@ export function ReceiptScanner({ onScanComplete }) {
   return (
     <div className="flex items-center gap-4">
       <input
-        type="file"
-        ref={fileInputRef}
-        className="hidden"
-        accept="image/*"
-        capture="environment"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) handleReceiptScan(file);
-        }}
-      />
+  type="file"
+  ref={fileInputRef}
+  className="hidden"
+  accept="image/*"
+  onChange={(e) => {
+    const file = e.target.files?.[0];
+    if (file) handleReceiptScan(file);
+  }}
+/>
+
       <Button
         type="button"
         variant="outline"
