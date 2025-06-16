@@ -180,14 +180,17 @@ export function TransactionTable({ transactions }) {
     )
       return;
 
-    deleteFn(selectedIds);
+    await deleteFn(selectedIds); // Await the delete
   };
 
+  // Update the useEffect to clear selection and refresh after delete
   useEffect(() => {
     if (deleted && !deleteLoading) {
       toast.error("Transactions deleted successfully");
+      setSelectedIds([]);         // Hide the button
+      router.refresh();           // Refresh the page (Next.js 13+)
     }
-  }, [deleted, deleteLoading]);
+  }, [deleted, deleteLoading, router]);
 
   const handleClearFilters = () => {
     setSearchTerm("");
