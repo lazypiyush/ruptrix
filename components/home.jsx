@@ -35,27 +35,27 @@ const Dash = () => {
           analyze, and optimize your spending with real-time insights.
         </p>
 
-        <div className="flex justify-center items-center">
-          <div>
-            <Spline
-              scene="https://prod.spline.design/nFoKZIIgGXZU8DR0/scene.splinecode"
-              className="w-full h-full"
-            />
-            <div className="bg-white h-10 w-40 relative right-[-420] top-[-57]"></div>
-            
-          </div>
-        </div>
+        <div className="hidden md:flex justify-center items-center">
+  <div>
+    <Spline
+      scene="https://prod.spline.design/nFoKZIIgGXZU8DR0/scene.splinecode"
+      className="w-full h-full"
+    />
+    <div className="hidden md:block bg-white h-10 w-40 relative right-[-420px] top-[-57px]"></div>
 
-        <div className="relative mt-4 flex justify-center items-center">
-          <Link href="/dashboard">
-            <Button
-              size="lg"
-              className="bg-black px-8 relative left-[-32.5] top-[-152px] h-10.5 hover:cursor-pointer hover:bg-black hover:text-white"
-            >
-              Get Started
-            </Button>
-          </Link>
-        </div>
+  </div>
+</div>
+
+        <div className="hidden md:flex relative mt-4 justify-center items-center">
+  <Link href="/dashboard">
+    <Button
+      size="lg"
+      className="bg-black px-8 relative left-[-32.5px] top-[-152px] h-10.5 hover:cursor-pointer hover:bg-black hover:text-white"
+    >
+      Get Started
+    </Button>
+  </Link>
+</div>
       </div>
     </div>
   );
