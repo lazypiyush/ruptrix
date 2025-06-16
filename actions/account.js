@@ -4,6 +4,18 @@ import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
+export async function deleteAccount(accountId) {
+  try {
+    await db.account.delete({
+      where: { id: accountId },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete account", error);
+    return { success: false, message: "Failed to delete account" };
+  }
+}
+
 const serializeDecimal = (obj) => {
   const serialized = { ...obj };
   if (obj.balance) {
