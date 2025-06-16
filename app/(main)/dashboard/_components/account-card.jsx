@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowUpRight, ArrowDownRight, CreditCard } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, Trash2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import useFetch from "@/hooks/use-fetch";
 import {
@@ -13,8 +12,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { updateDefaultAccount } from "@/actions/account";
+import { updateDefaultAccount, deleteAccount } from "@/actions/account";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 export function AccountCard({ account }) {
   const { name, type, balance, id, isDefault } = account;
@@ -26,15 +26,29 @@ export function AccountCard({ account }) {
     error,
   } = useFetch(updateDefaultAccount);
 
+  const {
+    loading: deleteLoading,
+    fn: deleteFn,
+    data: deleteResult,
+    error: deleteError,
+  } = useFetch(deleteAccount);
+
   const handleDefaultChange = async (event) => {
     event.preventDefault(); // Prevent navigation
 
     if (isDefault) {
-      toast.warning("You need atleast 1 default account");
-      return; // Don't allow toggling off the default account
+      toast.warning("You need at least 1 default account");
+      return;
     }
 
     await updateDefaultFn(id);
+  };
+
+  const handleDelete = async (event) => {
+    event.preventDefault(); // Prevent card link click
+    if (confirm("Are you sure you want to delete this account?")) {
+      await deleteFn(id);
+    }
   };
 
   useEffect(() => {
@@ -49,6 +63,19 @@ export function AccountCard({ account }) {
     }
   }, [error]);
 
+  useEffect(() => {
+    if (deleteResult?.success) {
+      toast.success("Account deleted successfully");
+      window.location.reload(); // Reload to reflect deletion
+    }
+  }, [deleteResult]);
+
+  useEffect(() => {
+    if (deleteError) {
+      toast.error(deleteError.message || "Failed to delete account");
+    }
+  }, [deleteError]);
+
   return (
     <Card className="hover:shadow-md transition-shadow group relative">
       <Link href={`/account/${id}`}>
@@ -56,11 +83,22 @@ export function AccountCard({ account }) {
           <CardTitle className="text-sm font-medium capitalize">
             {name}
           </CardTitle>
-          <Switch
-            checked={isDefault}
-            onClick={handleDefaultChange}
-            disabled={updateDefaultLoading}
-          />
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7 text-destructive hover:bg-destructive/10"
+              onClick={handleDelete}
+              disabled={deleteLoading}
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+            <Switch
+              checked={isDefault}
+              onClick={handleDefaultChange}
+              disabled={updateDefaultLoading}
+            />
+          </div>
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
