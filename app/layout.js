@@ -19,12 +19,8 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/* Google AdSense script */}
-          <Script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5722100184441055"
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
+          <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}"
+     crossOrigin="anonymous"></Script>
         </head>
         <body className={inter.className}>
           {/* Header */}
