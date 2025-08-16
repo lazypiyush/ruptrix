@@ -25,10 +25,10 @@ export default function RootLayout({ children }) {
             crossOrigin="anonymous"
           />
 
-          {/* Google Search Console Verification */}
+          {/* Google Search Console verification */}
           <meta
             name="google-site-verification"
-            content="googlecc0bbf2bb72e413a.html"
+            content="googlecc0bbf2bb72e413a"
           />
         </head>
         <body className={inter.className}>
