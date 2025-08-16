@@ -18,16 +18,6 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <head>
-          {/* Google AdSense */}
-          <meta
-            name="google-adsense-account"
-            content="ca-pub-5722100184441055"
-          />
-          {/* Google Site Verification */}
-          <meta
-            name="google-adsense-account"
-            content="ca-pub-5722100184441055"
-          />
           {/* Google Ads script */}
           <Script
             async
