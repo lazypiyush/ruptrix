@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"]
@@ -14,6 +15,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5722100184441055"
+     crossOrigin="anonymous"></Script>
     <ClerkProvider>
     <html lang="en">
       <body
