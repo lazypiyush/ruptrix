@@ -19,8 +19,17 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           {/* Google AdSense script */}
-          <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}"
-     crossOrigin="anonymous"></Script>
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
+            crossOrigin="anonymous"
+          />
+
+          {/* Google Search Console Verification */}
+          <meta
+            name="google-site-verification"
+            content="gx9CRGyTaLtLhHb_k4klaEhprglpDrIti61jeRs86Kw"
+          />
         </head>
         <body className={inter.className}>
           {/* Header */}
